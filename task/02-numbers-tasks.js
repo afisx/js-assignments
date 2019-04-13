@@ -112,7 +112,11 @@ function getLinearEquationRoot(a, b) {
  *   (0,1) (1,2)     => 0
  */
 function getAngleBetweenVectors(x1, y1, x2, y2) {
-    throw new Error('Not implemented');
+	let powVect = x1*x2+y1*y2;
+	let modVect = Math.sqrt(Math.pow(x1, 2) + Math.pow(y1, 2)) * Math.sqrt(Math.pow(x2, 2) + Math.pow(y2, 2));
+    let cos = (powVect !== 0) ? powVect/modVect : 0;
+	let acos = Math.acos(cos);
+	return acos;
 }
 
 /**
@@ -222,7 +226,8 @@ function isPrime(n) {
  *   toNumber(new Number(42), 0) => 42
  */
 function toNumber(value, def) {
-    throw new Error('Not implemented');
+	value = (parseInt(value)) ? value : def;
+    return value;
 }
 
 module.exports = {
