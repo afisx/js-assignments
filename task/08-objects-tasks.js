@@ -58,12 +58,23 @@ function getJSON(obj) {
  *
  */
 function fromJSON(proto, json) {
-	/*let params = JSON.parse(json);
-	let obj = Object.create(null);
-	for(let i in params){
+	/*console.log(proto);
+	console.log(json);
+	let Obj = proto.constructor;
+	let obj = Object.create(proto);
+	obj = new Obj();
+	let params = JSON.parse(json);
+	for (let i in params){
 		obj[i] = params[i];
 	}
-    return obj;*/
+	obj.__proto__ = Obj;
+	obj.prototype.constructor = proto.constructor;
+	console.log(Obj.__proto__);
+	console.log(Obj.prototype);
+	console.log(obj.prototype);
+	console.log(obj.__proto__);
+	console.log(obj.prototype.constructor);
+	return obj;*/
 	throw new Error('Not implemented');
 }
 

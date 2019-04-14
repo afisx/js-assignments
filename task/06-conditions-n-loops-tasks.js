@@ -30,7 +30,16 @@
  *
  */
 function getFizzBuzz(num) {
-    throw new Error('Not implemented');
+	if (num%3 === 0 && num%5 === 0){
+		return 'FizzBuzz';
+	} else if (num%3 === 0){
+		return 'Fizz';
+	} else if (num%5 === 0){
+		return 'Buzz';
+	} else {
+		return num;
+	}
+    //throw new Error('Not implemented');
 }
 
 
@@ -46,7 +55,8 @@ function getFizzBuzz(num) {
  *   10 => 3628800
  */
 function getFactorial(n) {
-    throw new Error('Not implemented');
+	return (n != 1) ? n * getFactorial(n - 1) : 1;
+    //throw new Error('Not implemented');
 }
 
 
@@ -209,7 +219,8 @@ function getIntervalString(a, b, isStartIncluded, isEndIncluded) {
  * 'noon' => 'noon'
  */
 function reverseString(str) {
-    throw new Error('Not implemented');
+	return str.split('').reverse().join('');
+    //throw new Error('Not implemented');
 }
 
 
@@ -226,7 +237,9 @@ function reverseString(str) {
  *   34143 => 34143
  */
 function reverseInteger(num) {
-    throw new Error('Not implemented');
+	let str = num.toString();
+	return +str.split('').reverse().join('');
+    //throw new Error('Not implemented');
 }
 
 
@@ -296,7 +309,49 @@ function getDigitalRoot(num) {
  *   '{[(<{[]}>)]}' = true 
  */
 function isBracketsBalanced(str) {
-    throw new Error('Not implemented');
+	let brackets = {
+		'[':']',
+		'{':'}',
+		'(':')',
+		'<':'>'
+	}
+	return checkStr(str, brackets);
+    //throw new Error('Not implemented');
+}
+
+function checkStr(str, brackets){
+
+	const strLength = str.length;
+	let cache = [],
+		char = '',
+		closed = '';
+	for (let j = 0; j < strLength; j++){
+		char = str[j];
+		closed = brackets[char];
+		if (char != closed){
+			if (closed){
+				cache.push(char);
+			} else if (cache.length == 0){
+				return false;
+			}else if (cache.length > 0) {
+				let last = cache.pop();
+				if (brackets[last] !== char){
+					return false;
+				}
+			}
+		} else {
+			if (cache.length > 0) {
+				let last = cache.pop();
+				if (brackets[last] !== char){
+					cache.push(last);
+					cache.push(char);
+				}
+			}else if (cache.length == 0){
+				cache.push(char);
+			}
+		}
+	}
+	return (cache.length == 0) ? true : false; 
 }
 
 
