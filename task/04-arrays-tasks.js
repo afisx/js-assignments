@@ -309,13 +309,10 @@ function getSecondItems(arr) {
  *  [ 1,2,3,4,5 ] => [ 1, 2,2, 3,3,3, 4,4,4,4, 5,5,5,5,5 ]
  */
 function propagateItemsByPositionIndex(arr) {
-  /*if (arr.length < 1) return arr;
-  let sum = 0; 
-   return arr.map((val, index, array) => {
-		let ar = new Array(index+1).fill(val).valueOf();
-		return ar;
-   });*/
-   throw new Error('Not implemented');
+  if (arr.length < 1) return arr;
+	return arr.reduce((a, item, i) => {
+		return a.concat(Array.from({ length: i + 1 },() => item))
+	}, []);
 }
 
 
@@ -376,7 +373,15 @@ function getPositivesCount(arr) {
  *   [ 'one','one','one','zero' ]     => [ 'zero','one','one','one' ]
  */
 function sortDigitNamesByNumericOrder(arr) {
-   throw new Error('Not implemented');
+	if (arr.length < 2) return [];
+	let num = {
+		'zero' : 0, 'one' : 1,'two' : 2,'three' : 3,'four' : 4,'five' : 5,'six' : 6,'seven' : 7,'eight' : 8,'nine' : 9,
+	}
+	let sort = arr.sort((a, b) => {
+		return (num[a] > num[b]);
+	});
+	return sort;
+   //throw new Error('Not implemented');
 }
 
 /** 
@@ -491,7 +496,7 @@ function toStringList(arr) {
 function sortCitiesArray(arr) {
 	/*console.log(arr);
    let sort = arr.sort((a, b) => {
-	   return (a.country === b.country && a.city > b.city || a.country > b.country);
+	   return (a.country > b.country || a.country === b.country && a.city > b.city || a.country < b.country && a.city > b.city );
    });
    console.log(sort);
    return sort;*/
